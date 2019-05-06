@@ -189,6 +189,7 @@ public class Juego extends JFrame {
 
 
         //permite visualizar la ventana
+       System.out.println("YEs");
         Escenario.setVisible(true);
     }
 

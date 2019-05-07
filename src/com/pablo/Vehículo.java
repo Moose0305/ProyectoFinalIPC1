@@ -39,10 +39,18 @@ abstract public class Vehículo {
     }
 
     //METODO PARA SELECCIONAR EL NOMBRE DE UN VEHICULO
-    public String datosvehículo () {
+   /* public String datosvehículo () {
         Scanner s = new Scanner(System.in);
         System.out.println("\nIngrese el nickname del vehículo ");
         nickname = s.nextLine();
+        setNickname(nickname);
+
+        return nickname;
+    }*/
+
+    public String datosvehículo () {
+
+        nickname = "v1";
         setNickname(nickname);
 
         return nickname;

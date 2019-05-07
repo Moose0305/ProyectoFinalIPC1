@@ -68,8 +68,11 @@ public class SeleccionDimensiones {
                         }
 
                         //iniciarTablero(dy,dx);
+                        ventana.setVisible(false);
+                        ventana.dispose();
                         Juego j = new Juego();
                         j.iniciarTablero(dy,dx);
+                       // j.seleccionarAccion();
                     }
                 }
         );

@@ -20,6 +20,9 @@ public abstract class Terreno extends JButton {
     ImageIcon iconoAgua= new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/agua.png");
     ImageIcon iconoTierra= new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/tierra.jpg");
     ImageIcon iconoMontaña= new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/montaña.png");
+    ImageIcon iconoTanque1 = new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/tanque2.png");
+    ImageIcon iconoAvion2 = new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/avion2.png");
+
 
     //this.setBackground(new java.awt.Color(168, 72, 40)); tierra
     // this.setBackground(new java.awt.Color(8, 203, 0));  montaña
@@ -50,7 +53,13 @@ public abstract class Terreno extends JButton {
     }
 
     public void setV1(Vehículo v1) {
-        this.v1 = v1;
+       this.v1 = v1;
+
+       if(this.v1 instanceof Tanque)
+        this.setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+
+       if(this.v1 instanceof  Avion)
+           this.setIcon(new ImageIcon(iconoAvion2.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
     }
 
     public Vehículo getV1() {

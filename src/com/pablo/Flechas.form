@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.pablo.Flechas">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="673" height="474"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="7b99d" class="javax.swing.JButton" binding="button1" default-binding="true">
+        <constraints border-constraint="East"/>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="2e03b" class="javax.swing.JButton" binding="abajoButton" default-binding="true">
+        <constraints border-constraint="South"/>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="45524" class="javax.swing.JButton" binding="izquierdaButton" default-binding="true">
+        <constraints border-constraint="West"/>
+        <properties>
+          <horizontalTextPosition value="0"/>
+          <text value=""/>
+          <verticalAlignment value="0"/>
+          <verticalTextPosition value="3"/>
+        </properties>
+      </component>
+      <component id="a8805" class="javax.swing.JButton" binding="arribaButton" default-binding="true">
+        <constraints border-constraint="North"/>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

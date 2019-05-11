@@ -151,7 +151,9 @@ public class Tanque extends Vehículo {
         System.out.println("\nDatos del vehículo :" + "\nNickname: " + getNickname() + "\nSalud: " + getHp() +"\nNivel: "+ getNivel() +"\nPuntos de poder: " +  getPp()+
                 "\nExperiencia: " + getExperiencia() + "\nArma: " + getArma() + "   Ataque: " + getAtaque() + "   Defensa: " +
                 getDefensa() + "   Puntería: " + getPuntería());
-        return ("String");
+        return ("\nDatos del vehículo :" + "\nNickname: " + getNickname() + "\nSalud: " + getHp() +"\nNivel: "+ getNivel() +"\nPuntos de poder: " +  getPp()+
+                "\nExperiencia: " + getExperiencia() + "\nArma: " + getArma() + "   Ataque: " + getAtaque() + "   Defensa: " +
+                getDefensa() + "   Puntería: " + getPuntería());
     }
 
 

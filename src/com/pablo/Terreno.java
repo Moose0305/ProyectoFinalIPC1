@@ -28,6 +28,7 @@ public abstract class Terreno extends JButton {
     // this.setBackground(new java.awt.Color(8, 203, 0));  montaña
     //this.setBackground(new java.awt.Color(39, 198, 203));  agua
 
+
     //establecen las dimensiones de los iconos
     int ancho = 70;
     int alto = -1;
@@ -40,6 +41,7 @@ public abstract class Terreno extends JButton {
         //this.setIcon(new ImageIcon(iconoMontaña.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
 
 
+        //this.setBackground(new java.awt.Color(39, 198, 203));
         //this.setIcon(new ImageIcon(iconoMontaña.getImage()));
 
         //this.setIcon();
@@ -100,12 +102,12 @@ public abstract class Terreno extends JButton {
         v1.getVehículo();
     }
 
-    String getLine1(){
+    /*String getLine1(){
         if (v1!= null)
             return getCuadroColor()+getCuadroColor()+v1.getVehículo()+getCuadroColor()+getCuadroColor();
 
         return getCuadroColor()+getCuadroColor()+getCuadroColor()+getCuadroColor()+getCuadroColor();
-    }
+    }*/
 
-    abstract String getCuadroColor();
+    //abstract String getCuadroColor();
 }

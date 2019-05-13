@@ -24,6 +24,7 @@ public class Juego extends JFrame {
     public int a,b ;
     public boolean booleana1;
     public boolean booleana2;
+    public boolean booleana3;
 
     private JPanel panelInfo;
     private JPanel panelIngreso;
@@ -78,13 +79,29 @@ public class Juego extends JFrame {
     JLabel puntV = new JLabel();
 
     public void escenario11(int i, int e, int dy, int dx){
-        //if(i<(dx-2)&&e<(dy-2)) {
+
         if((i==1 && e==0) || (i==2 && e==0)) {
             arregloDeBotones[i][e] = new TerrenoMontaña();
             }
 
        else if((i==1 && e==2) || (i==1 && e==3)) {
+            arregloDeBotones[i][e] = new TerrenoMontaña();
+        }
+
+
+        else{
+            arregloDeBotones[i][e] = new TerrenoTierra();
+        }
+    }
+
+    public void escenario12(int i, int e, int dy, int dx){
+
+        if((i==1 && e==3) || (i==2 && e==0)) {
             arregloDeBotones[i][e] = new TerrenoAgua();
+        }
+
+        else if((i==2 && e==1) || (i==2 && e==2)) {
+            arregloDeBotones[i][e] = new TerrenoMontaña();
         }
 
 
@@ -194,7 +211,7 @@ public class Juego extends JFrame {
 
             for (int e = 0; e < dx; e++) {
 
-                escenario11(i ,e ,dy , dx);
+                escenario12(i ,e ,dy , dx);
 
              /*   if(booleana2==true){
                    // iniciarVehiculos();
@@ -630,20 +647,81 @@ public class Juego extends JFrame {
 
                                                     System.out.println("Casillas disponibles " + contadorCasillas);
                                                     System.out.println("DADO: " + dadoM);
+
                                                     if(contadorCasillas>= dadoM) {
                                                         if(!(arregloDeBotones[(i)][(j + dadoM)].v1 instanceof Tanque || arregloDeBotones[(i)][(j + dadoM)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + dadoM)]);
-                                                            //arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
-                                                        }
 
+                                                            for(int u=j+1; u<=j+dadoM; u++){
+
+                                                                if(arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[i][u] instanceof TerrenoMontaña){
+                                                                    booleana2=true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + dadoM)]);
+                                                                //arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+
+                                                            }
+                                                            if(booleana2==true) {
+
+                                                                for (int u = j + 1; u <= j+dadoM; u++){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n J+1: "+ j+1 + "     U: " + u);
+                                                                        if(j+1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else {
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(u - 1)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
 
                                                     if(contadorCasillas <= dadoM && contadorCasillas!=0) {
                                                         if(!(arregloDeBotones[(i)][(j + contadorCasillas)].v1 instanceof Tanque || arregloDeBotones[(i)][(j + contadorCasillas)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + contadorCasillas)]);
-                                                            //arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
+
+                                                            for(int u=j+1; u<=j+contadorCasillas; u++){
+
+                                                                if(arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[i][u] instanceof TerrenoMontaña){
+                                                                    booleana2=true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + contadorCasillas)]);
+                                                                //arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+                                                            }
+
+                                                            if(booleana2==true){
+
+                                                                for (int u = j + 1; u <= j+contadorCasillas; u++){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n J+1: "+ j+1 + "   U: " + u);
+                                                                        if(j+1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else{
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(u-1)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);}
+
+
+                                                                    }
+                                                                }
+                                                            }
                                                         }
 
                                                         ////////////////////////////////////////    MENSAJE NO PUEDE MOVER VEHICULO SOBRE OTRO
@@ -669,20 +747,80 @@ public class Juego extends JFrame {
                                                     System.out.println("DADO: " + dadoM);
 
                                                     if(contadorCasillas>= dadoM) {
-                                                        ///  if((arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[(i)][(j - dadoM)] instanceof ))
 
                                                         if(!(arregloDeBotones[(i)][(j - dadoM)].v1 instanceof Tanque || arregloDeBotones[(i)][(j - dadoM)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j - dadoM)]);
-                                                            //arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
+
+                                                            for(int u=j-1; u>=j-dadoM; u--){
+
+                                                                if(arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[i][u] instanceof TerrenoMontaña){
+                                                                    booleana2=true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j - dadoM)]);
+                                                                //arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+                                                            }
+
+
+                                                            if(booleana2==true) {
+
+                                                                for (int u = j - 1; u >= j-dadoM; u--){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n J-1: "+ j+"-"+1 + "   U: " + u);
+                                                                        if(j-1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else {
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(u + 1)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
 
                                                     if(contadorCasillas <= dadoM && contadorCasillas!=0) {
                                                         if (!(arregloDeBotones[(i)][(j - contadorCasillas)].v1 instanceof Tanque || arregloDeBotones[(i)][(j - contadorCasillas)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j - contadorCasillas)]);
-                                                            //arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
+
+                                                            for(int u=j-1; u>=j-contadorCasillas; u--){
+
+                                                                if(arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua  || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[i][u] instanceof TerrenoMontaña){
+                                                                    booleana2=true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j - contadorCasillas)]);
+                                                                //arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+                                                            }
+
+                                                            if(booleana2==true) {
+
+                                                                for (int u = j - 1; u >= j-contadorCasillas; u--){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[i][u] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n J-1: "+ j+"-"+1 + "   U: " + u);
+                                                                        if(j-1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else {
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(u + 1)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
 
@@ -703,17 +841,77 @@ public class Juego extends JFrame {
 
                                                     if(contadorCasillas>= dadoM) {
                                                         if(!(arregloDeBotones[(i - dadoM)][(j)].v1 instanceof Tanque || arregloDeBotones[(i - dadoM)][(j)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i - dadoM)][(j)]);
-                                                            //arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
+
+                                                            for(int u=i-1; u>=i-dadoM; u--){
+
+                                                                if(arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[u][j] instanceof TerrenoMontaña){
+                                                                    booleana2=true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i - dadoM)][(j)]);
+                                                                //arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+                                                            }
+
+                                                            if(booleana2==true) {
+
+                                                                for (int u = i - 1; u >= i-dadoM; u--){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n I-1: "+ i+"-"+1 + "   U: " + u);
+                                                                        if(i-1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else {
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(u+1)][(j)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
 
                                                     if(contadorCasillas <= dadoM && contadorCasillas!=0) {
                                                         if (!(arregloDeBotones[(i-contadorCasillas)][(j)].v1 instanceof Tanque || arregloDeBotones[(i-contadorCasillas)][(j)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i - contadorCasillas)][(j)]);
-                                                            // arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
+
+                                                            for(int u=i-1; u>=i-contadorCasillas; u--) {
+
+                                                                if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua  || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[u][j] instanceof TerrenoMontaña) {
+                                                                    booleana2 = true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i - contadorCasillas)][(j)]);
+                                                                // arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+                                                            }
+
+                                                            if(booleana2==true) {
+
+                                                                for (int u = i - 1; u >= i-contadorCasillas; u--){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n I-1: "+ i+"-"+1 + "   U: " + u);
+                                                                        if(i-1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else {
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(u+1)][(j)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
 
@@ -735,17 +933,79 @@ public class Juego extends JFrame {
 
                                                     if(contadorCasillas>= dadoM) {
                                                         if(!(arregloDeBotones[(i + dadoM)][(j)].v1 instanceof Tanque || arregloDeBotones[(i + dadoM)][(j)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i + dadoM)][(j)]);
-                                                            //arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
+
+                                                            for(int u=i+1; u<=i+dadoM; u++){
+
+                                                                if(arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[u][j] instanceof TerrenoMontaña){
+                                                                    booleana2=true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i + dadoM)][(j)]);
+                                                                //arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+                                                            }
+
+                                                            if(booleana2==true) {
+
+                                                                for (int u = i + 1; u <= i+dadoM; u++){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n J+1: "+ j+1 + "     U: " + u);
+                                                                        if(i+1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else {
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(u-1)][(j)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
 
                                                     if(contadorCasillas <= dadoM && contadorCasillas!=0) {
                                                         if (!(arregloDeBotones[(i+contadorCasillas)][(j)].v1 instanceof Tanque || arregloDeBotones[(i+contadorCasillas)][(j)].v1 instanceof Avion)) {
-                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i + contadorCasillas)][(j)]);
-                                                            // arregloDeBotones[i][j].getCuadroColor();
-                                                            arregloDeBotones[i][j].setIcon(null);
+
+                                                            for(int u=i+1; u<=i+contadorCasillas; u++){
+
+                                                                if(arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua || arregloDeBotones[i][j].v1 instanceof Avion && arregloDeBotones[u][j] instanceof TerrenoMontaña){
+                                                                    booleana2=true;
+                                                                }
+                                                            }
+
+                                                            if(booleana2==false) {
+                                                                moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i + contadorCasillas)][(j)]);
+                                                                // arregloDeBotones[i][j].getCuadroColor();
+                                                                arregloDeBotones[i][j].setIcon(null);
+                                                            }
+
+
+                                                            if(booleana2==true){
+
+                                                                for (int u = i + 1; u <= i+contadorCasillas; u++){
+                                                                    if (arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[u][j] instanceof TerrenoAgua && booleana3==false) {
+
+                                                                        System.out.println("\n\n J+1: "+ j+1 + "   U: " + u);
+                                                                        if(i+1==u){
+                                                                            System.out.println("\nESTA A LA PAR");
+                                                                            booleana3=true;
+                                                                        }
+
+                                                                        else{
+                                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(u-1)][(j)]);
+                                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                                            arregloDeBotones[i][j].setIcon(null);}
+
+
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
 
@@ -757,8 +1017,9 @@ public class Juego extends JFrame {
                                                 }
 
                                                 contadorCasillas=0;
+                                                booleana2=false;
+                                                booleana3=false;
 
-                                                //arregloDeBotones[i][j].setBackground(new java.awt.Color(168,72,40));
                                             }
                                         }
                                     }
@@ -917,6 +1178,12 @@ public class Juego extends JFrame {
 
         arregloDeBotones[0][0].inicializarEnemigo();
         arregloDeBotones[0][0].setIcon(new ImageIcon(iconoEnemigo.getImage().getScaledInstance(ancho-28, alto, java.awt.Image.SCALE_DEFAULT)));
+
+        arregloDeBotones[0][1].inicializarEnemigo();
+        arregloDeBotones[0][1].setIcon(new ImageIcon(iconoEnemigo.getImage().getScaledInstance(ancho-28, alto, java.awt.Image.SCALE_DEFAULT)));
+
+        arregloDeBotones[0][2].inicializarEnemigo();
+        arregloDeBotones[0][2].setIcon(new ImageIcon(iconoEnemigo.getImage().getScaledInstance(ancho-28, alto, java.awt.Image.SCALE_DEFAULT)));
 
     }
 

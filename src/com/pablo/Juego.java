@@ -77,28 +77,20 @@ public class Juego extends JFrame {
     JLabel defV = new JLabel();
     JLabel puntV = new JLabel();
 
+    public void escenario11(int i, int e, int dy, int dx){
+        //if(i<(dx-2)&&e<(dy-2)) {
+        if((i==1 && e==0) || (i==2 && e==0)) {
+            arregloDeBotones[i][e] = new TerrenoMontaña();
+            }
 
-    public void escenario11(int dy, int dx) {
-        for(int j=0; j<dx; j++) {
-            arregloDeBotones[0][j] = new TerrenoTierra();
+       else if((i==1 && e==2) || (i==1 && e==3)) {
+            arregloDeBotones[i][e] = new TerrenoAgua();
         }
 
-        //////////////////////////////PRUEBA
-        //arregloDeBotones[0][0] = new TerrenoTierra();
 
-        arregloDeBotones[1][0] = new TerrenoMontaña();
-        arregloDeBotones[1][1] = new TerrenoTierra();
-        arregloDeBotones[1][2] = new TerrenoAgua();
-        arregloDeBotones[1][3] = new TerrenoAgua();
-        arregloDeBotones[2][0] = new TerrenoMontaña();
-
-       for(int i=2; i<dy; i++) {
-           for(int j=1; j<dx; j++) {
-
-               arregloDeBotones[i][j] = new TerrenoTierra();
-           }
-       }
-        arregloDeBotones[3][0] = new TerrenoTierra();
+        else{
+            arregloDeBotones[i][e] = new TerrenoTierra();
+        }
     }
 
     public void inicioJuego() {
@@ -195,37 +187,47 @@ public class Juego extends JFrame {
         Escenario.setSize(800, 700);
 
         // estableciendo GridLayout en la ventana, permite mostrar los botones en cuadricula
-       //// Escenario.setLayout(new GridLayout(dy, dx));
-            panelSuperior.setLayout(new GridLayout(dy, dx));
+       panelSuperior.setLayout(new GridLayout(dy, dx));
 
         //ciclo que recorre la matriz y crea un nuevo boton en cada espacio
         for (int i = 0; i < dy; i++) {
 
             for (int e = 0; e < dx; e++) {
 
+                escenario11(i ,e ,dy , dx);
+
+             /*   if(booleana2==true){
+                   // iniciarVehiculos();
+                     arregloDeBotones[0][0].inicializarTanque();
+       arregloDeBotones[0][0].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+
+                    booleana2=true;
+                }*/
+
+
+
                 //crea botones
-                //escenario[i][e] = new JButton(""+ contadorBoton);
-                arregloDeBotones[i][e] = new Terreno() {
+                //arregloDeBotones[i][e] = new Terreno() {
                    /* @Override
 
                     String getCuadroColor() {
                         return null;
                     }*/
-                };
+                //};
+
+
+
+                arregloDeBotones[i][e].setText(""+ contadorBoton);
+                contadorBoton=contadorBoton+1;
+                //iniciarVehiculos();
 
 /////////////////////////////////////////////////////
                    //
-                arregloDeBotones[i][e] = new TerrenoAgua();
-                //arregloDeBotones[1][1] = new TerrenoAgua();
-
-                //arregloDeBotones[i][e].setText(""+ contadorBoton);
-
+                //arregloDeBotones[i][e] = new TerrenoAgua();
                 //añade los botones a la ventana
                 panelSuperior.add(arregloDeBotones[i][e]);
-                //contadorBoton=contadorBoton+1;
-
                 //Evento de botones matriz bi dimensional, reconoce que boton es presionado
-                arregloDeBotones[i][e].addActionListener(
+               /* arregloDeBotones[i][e].addActionListener(
                         new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -292,7 +294,7 @@ public class Juego extends JFrame {
                                                         ////////////////////////////////////////    MENSAJE NO PUEDE MOVER VEHICULO SOBRE OTRO
                                                        /* else {
                                                             JOptionPane.showMessageDialog(null, "No puede poner un vehiculo sobre otro");
-                                                        }*/
+                                                       ///////////////////////////// }
                                                     }
 
                                                     if(contadorCasillas==0) {
@@ -413,58 +415,11 @@ public class Juego extends JFrame {
                                 direccion=0;
                             }
                         }
-                        );
+                        );*/
 
             }
         }
-
-       arregloDeBotones[1][1].setBackground(Color.GREEN);
-       // escenario11(dy, dx);
-      // arregloDeBotones[2][2] = new TerrenoMontaña();
-       for (int i = 0; i < dy; i++) {
-           for (int e = 0; e < dx; e++) {
-
-
-               arregloDeBotones[i][e].setText(""+ contadorBoton);
-               contadorBoton=contadorBoton+1;
-           }
-       }
-        /*if(booleana2==false) {
-           escenario11(dy, dx);
-           booleana2=true;
-       }*/
-
-      for(int i=0; i<SeleccionVehiculos.getSelec().length; i++) {
-          if (SeleccionVehiculos.getSelec()[i] == 0) {
-
-              arregloDeBotones[1][i+1].inicializarTanque();
-              //arregloDeBotones[0][i+i].inicializarTanque();
-              arregloDeBotones[1][i+1].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
-
-          }
-
-          if (SeleccionVehiculos.getSelec()[i] == 1) {
-
-              arregloDeBotones[1][i+1].inicializarAvion();
-              arregloDeBotones[1][i+1].setIcon(new ImageIcon(iconoAvion2.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
-          }
-      }
-
-      //Inicializando enemigos y estableciendo iconos
-      arregloDeBotones[0][2].inicializarEnemigo();
-      arregloDeBotones[0][2].setIcon(new ImageIcon((iconoEnemigo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT))));
-
-      arregloDeBotones[3][2].inicializarEnemigo();
-      arregloDeBotones[3][2].setIcon(new ImageIcon((iconoEnemigo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT))));
-
-       //escenario11(dy, dx);
-      /* for (int i = 0; i < dy; i++) {
-           for (int e = 0; e < dx; e++) {
-
-               arregloDeBotones[i][e].setText(""+ contadorBoton);
-               contadorBoton=contadorBoton+1;
-           }
-       }*/
+       iniciarVehiculos(dy, dx);
 
        mover.addActionListener(
 
@@ -494,6 +449,7 @@ public class Juego extends JFrame {
                        }
 
                        flechas();
+                       mover(dy, dx);
                        System.out.println("DESPUES DE FLECHAS: " + Flechas.getDireccion());
                    }
                }
@@ -621,24 +577,204 @@ public class Juego extends JFrame {
     }
 
 
-    public void mover() {
+    public void mover(int dy, int dx) {
 
-      /*  for(int i=0; i<dy; i++) {
-            for(int j=0; j<dx; j++) {
+        for(int i=0; i<dy; i++) {
+            for(int e=0; e<dx; e++) {
 
-                //convierte el texto de cada boton en entero
-                int k = Integer.parseInt(arregloDeBotones[i][j].getText());
+                arregloDeBotones[i][e].addActionListener(
+                        new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
 
-                if(k == seleccion){
+                                //Flechas.setDireccion(0);
 
-                    arregloDeBotones[i][j].setIcon(null);
+                                //booleana que identifica si previamente se ha presionado el boton mover
+                                if(booleana1==true) {
 
-                }
+                                    booleana1=false;
+
+                                    //muestra que boton se ha seleccionado en consola
+                                    JButton boton = (JButton) e.getSource();
+                                    System.out.println("Ha presionado el boton: " + boton.getActionCommand());
+                                    int t = Integer.parseInt(boton.getText());
+                                    //seleccion = boton.getActionCommand();
+
+                                    //guarda el numero de boton seleccionado para ser comparado despues
+                                    seleccion = t;
+
+                                    for (int i = 0; i < dy; i++) {
+                                        for (int j = 0; j < dx; j++) {
+
+                                            //convierte el texto de cada boton en entero
+                                            int k = Integer.parseInt(arregloDeBotones[i][j].getText());
+
+                                            //si el boton presionado es igual a el boton en el arreglo recorrido y si hay un tanque o un avion en ese boton
+                                            if (seleccion == k && (arregloDeBotones[i][j].v1 instanceof Tanque || arregloDeBotones[i][j].v1 instanceof Avion)) {
+
+                                                //si el boton seleccionado es un vehiculo, booleana permite desplegar ventana de flechas
+                                                //booleana2=true;
+
+                                                //arregloDeBotones[i][j].setIcon(null);
+
+                                                mostrarVehiculo(i, j);
+                                                System.out.println("Flechas" + Flechas.getDireccion());
+
+                                                //MOVER DERECHA
+                                                if (direccion == 1) {
+
+                                                    for(int o=j+1; o< dx; o++){
+
+                                                        contadorCasillas= contadorCasillas +1;
+                                                    }
+
+                                                    System.out.println("Casillas disponibles " + contadorCasillas);
+                                                    System.out.println("DADO: " + dadoM);
+                                                    if(contadorCasillas>= dadoM) {
+                                                        if(!(arregloDeBotones[(i)][(j + dadoM)].v1 instanceof Tanque || arregloDeBotones[(i)][(j + dadoM)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + dadoM)]);
+                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+
+                                                    }
+
+                                                    if(contadorCasillas <= dadoM && contadorCasillas!=0) {
+                                                        if(!(arregloDeBotones[(i)][(j + contadorCasillas)].v1 instanceof Tanque || arregloDeBotones[(i)][(j + contadorCasillas)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + contadorCasillas)]);
+                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+
+                                                        ////////////////////////////////////////    MENSAJE NO PUEDE MOVER VEHICULO SOBRE OTRO
+                                                       /* else {
+                                                            JOptionPane.showMessageDialog(null, "No puede poner un vehiculo sobre otro");
+                                                        }*/
+                                                    }
+
+                                                    if(contadorCasillas==0) {
+                                                        JOptionPane.showMessageDialog(null, "Limite de escenario");
+                                                    }
+                                                }
+
+                                                //MOVER IZQUIERDA
+                                                if (direccion == 2) {
+
+                                                    for(int o=j-1; o> -1; o--){
+
+                                                        contadorCasillas= contadorCasillas +1;
+                                                    }
+
+                                                    System.out.println("Casillas disponibles " + contadorCasillas);
+                                                    System.out.println("DADO: " + dadoM);
+
+                                                    if(contadorCasillas>= dadoM) {
+                                                        ///  if((arregloDeBotones[i][j].v1 instanceof Tanque && arregloDeBotones[(i)][(j - dadoM)] instanceof ))
+
+                                                        if(!(arregloDeBotones[(i)][(j - dadoM)].v1 instanceof Tanque || arregloDeBotones[(i)][(j - dadoM)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j - dadoM)]);
+                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+                                                    }
+
+                                                    if(contadorCasillas <= dadoM && contadorCasillas!=0) {
+                                                        if (!(arregloDeBotones[(i)][(j - contadorCasillas)].v1 instanceof Tanque || arregloDeBotones[(i)][(j - contadorCasillas)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j - contadorCasillas)]);
+                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+                                                    }
+
+                                                    if(contadorCasillas==0) {
+                                                        JOptionPane.showMessageDialog(null, "Limite de escenario");
+
+                                                    }
+                                                    //Flechas.setDireccion(0);
+                                                }
+
+                                                //MOVER ARRIBA
+                                                if (direccion == 3) {
+
+                                                    for(int o=i-1; o >-1; o--){
+
+                                                        contadorCasillas= contadorCasillas +1;
+                                                    }
+
+                                                    if(contadorCasillas>= dadoM) {
+                                                        if(!(arregloDeBotones[(i - dadoM)][(j)].v1 instanceof Tanque || arregloDeBotones[(i - dadoM)][(j)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i - dadoM)][(j)]);
+                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+                                                    }
+
+                                                    if(contadorCasillas <= dadoM && contadorCasillas!=0) {
+                                                        if (!(arregloDeBotones[(i-contadorCasillas)][(j)].v1 instanceof Tanque || arregloDeBotones[(i-contadorCasillas)][(j)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i - contadorCasillas)][(j)]);
+                                                            // arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+                                                    }
+
+                                                    if(contadorCasillas==0) {
+                                                        JOptionPane.showMessageDialog(null, "Limite de escenario");
+
+                                                    }
+                                                    //Flechas.setDireccion(0);
+                                                }
+
+
+                                                //MOVER ABAJO
+                                                if (direccion == 4) {
+
+                                                    for(int o=i+1; o< dy; o++){
+
+                                                        contadorCasillas= contadorCasillas +1;
+                                                    }
+
+                                                    if(contadorCasillas>= dadoM) {
+                                                        if(!(arregloDeBotones[(i + dadoM)][(j)].v1 instanceof Tanque || arregloDeBotones[(i + dadoM)][(j)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i + dadoM)][(j)]);
+                                                            //arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+                                                    }
+
+                                                    if(contadorCasillas <= dadoM && contadorCasillas!=0) {
+                                                        if (!(arregloDeBotones[(i+contadorCasillas)][(j)].v1 instanceof Tanque || arregloDeBotones[(i+contadorCasillas)][(j)].v1 instanceof Avion)) {
+                                                            moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i + contadorCasillas)][(j)]);
+                                                            // arregloDeBotones[i][j].getCuadroColor();
+                                                            arregloDeBotones[i][j].setIcon(null);
+                                                        }
+                                                    }
+
+                                                    if(contadorCasillas==0) {
+                                                        JOptionPane.showMessageDialog(null, "Limite de escenario");
+
+                                                    }
+                                                    //Flechas.setDireccion(0);
+                                                }
+
+                                                contadorCasillas=0;
+
+                                                //arregloDeBotones[i][j].setBackground(new java.awt.Color(168,72,40));
+                                            }
+                                        }
+                                    }
+
+                                    //escenario11(dy, dx);
+                                    Escenario.setVisible(true);
+
+                                }
+                                direccion=0;
+                            }
+                        }
+                );
+
             }
-        }*/
+        }
 
-
-        //seleccion
     }
 
     public void moverVehículo(Terreno co, Terreno cd){
@@ -755,6 +891,32 @@ public class Juego extends JFrame {
 
         ventana1.add(panelS);
         ventana1.setVisible(true);
+
+    }
+
+    public void iniciarVehiculos(int dy, int dx){
+        int contadorpos=0;
+        for (int u = 0; u < SeleccionVehiculos.getSelec().length; u++) {
+
+            if (SeleccionVehiculos.getSelec()[u] == 0) {
+
+                arregloDeBotones[dy-1][contadorpos].inicializarTanque();
+                //arregloDeBotones[0][i+i].inicializarTanque();
+                arregloDeBotones[dy-1][contadorpos].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+
+            }
+
+            if (SeleccionVehiculos.getSelec()[u] == 1) {
+
+                arregloDeBotones[dy-1][contadorpos].inicializarAvion();
+                arregloDeBotones[dy-1][contadorpos].setIcon(new ImageIcon(iconoAvion2.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+            }
+
+            contadorpos= contadorpos+1;
+        }
+
+        arregloDeBotones[0][0].inicializarEnemigo();
+        arregloDeBotones[0][0].setIcon(new ImageIcon(iconoEnemigo.getImage().getScaledInstance(ancho-28, alto, java.awt.Image.SCALE_DEFAULT)));
 
     }
 

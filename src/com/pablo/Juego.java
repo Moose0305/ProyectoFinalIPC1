@@ -12,6 +12,9 @@ public class Juego extends JFrame {
     Terreno [][] arregloDeBotones;
     JFrame Escenario = new JFrame();
 
+    //ventana que muestra datos de vehiculo seleccionado
+    JFrame ventana1 = new JFrame("HA SELECCIONADO:");
+
     public int contadorBoton;
     public int seleccion;
     public int dadoM;
@@ -76,26 +79,26 @@ public class Juego extends JFrame {
 
 
     public void escenario11(int dy, int dx) {
-       /* for(int j=0; j<dx; j++) {
+        for(int j=0; j<dx; j++) {
             arregloDeBotones[0][j] = new TerrenoTierra();
-        }*/
+        }
 
         //////////////////////////////PRUEBA
         //arregloDeBotones[0][0] = new TerrenoTierra();
 
         arregloDeBotones[1][0] = new TerrenoMontaña();
-        //arregloDeBotones[1][1] = new TerrenoTierra();
+        arregloDeBotones[1][1] = new TerrenoTierra();
         arregloDeBotones[1][2] = new TerrenoAgua();
         arregloDeBotones[1][3] = new TerrenoAgua();
         arregloDeBotones[2][0] = new TerrenoMontaña();
 
-       /*for(int i=2; i<dy; i++) {
+       for(int i=2; i<dy; i++) {
            for(int j=1; j<dx; j++) {
 
                arregloDeBotones[i][j] = new TerrenoTierra();
            }
-       }*/
-        //arregloDeBotones[3][0] = new TerrenoTierra();
+       }
+        arregloDeBotones[3][0] = new TerrenoTierra();
     }
 
     public void inicioJuego() {
@@ -212,17 +215,14 @@ public class Juego extends JFrame {
 
 /////////////////////////////////////////////////////
                    //
-                arregloDeBotones[i][e] = new TerrenoMontaña();
+                arregloDeBotones[i][e] = new TerrenoAgua();
                 //arregloDeBotones[1][1] = new TerrenoAgua();
 
-                arregloDeBotones[i][e].setText(""+ contadorBoton);
+                //arregloDeBotones[i][e].setText(""+ contadorBoton);
 
                 //añade los botones a la ventana
                 panelSuperior.add(arregloDeBotones[i][e]);
-                contadorBoton=contadorBoton+1;
-
-                //escenario11(dy, dx);
-
+                //contadorBoton=contadorBoton+1;
 
                 //Evento de botones matriz bi dimensional, reconoce que boton es presionado
                 arregloDeBotones[i][e].addActionListener(
@@ -260,6 +260,7 @@ public class Juego extends JFrame {
 
                                                 //arregloDeBotones[i][j].setIcon(null);
 
+                                                    mostrarVehiculo(i, j);
                                                     System.out.println("Flechas" + Flechas.getDireccion());
 
                                                     //MOVER DERECHA
@@ -401,7 +402,7 @@ public class Juego extends JFrame {
                                                 contadorCasillas=0;
 
                                                 //arregloDeBotones[i][j].setBackground(new java.awt.Color(168,72,40));
-                                            }
+                                               }
                                         }
                                     }
 
@@ -417,6 +418,17 @@ public class Juego extends JFrame {
             }
         }
 
+       arregloDeBotones[1][1].setBackground(Color.GREEN);
+       // escenario11(dy, dx);
+      // arregloDeBotones[2][2] = new TerrenoMontaña();
+       for (int i = 0; i < dy; i++) {
+           for (int e = 0; e < dx; e++) {
+
+
+               arregloDeBotones[i][e].setText(""+ contadorBoton);
+               contadorBoton=contadorBoton+1;
+           }
+       }
         /*if(booleana2==false) {
            escenario11(dy, dx);
            booleana2=true;
@@ -425,21 +437,25 @@ public class Juego extends JFrame {
       for(int i=0; i<SeleccionVehiculos.getSelec().length; i++) {
           if (SeleccionVehiculos.getSelec()[i] == 0) {
 
-              arregloDeBotones[0][i+1].inicializarTanque();
+              arregloDeBotones[1][i+1].inicializarTanque();
               //arregloDeBotones[0][i+i].inicializarTanque();
-              arregloDeBotones[0][i+1].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+              arregloDeBotones[1][i+1].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
 
           }
 
           if (SeleccionVehiculos.getSelec()[i] == 1) {
 
-              arregloDeBotones[0][i+1].inicializarAvion();
-              arregloDeBotones[0][i+1].setIcon(new ImageIcon(iconoAvion2.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+              arregloDeBotones[1][i+1].inicializarAvion();
+              arregloDeBotones[1][i+1].setIcon(new ImageIcon(iconoAvion2.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
           }
       }
 
-      arregloDeBotones[3][3].inicializarEnemigo();
-      arregloDeBotones[3][3].setIcon(new ImageIcon((iconoEnemigo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT))));
+      //Inicializando enemigos y estableciendo iconos
+      arregloDeBotones[0][2].inicializarEnemigo();
+      arregloDeBotones[0][2].setIcon(new ImageIcon((iconoEnemigo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT))));
+
+      arregloDeBotones[3][2].inicializarEnemigo();
+      arregloDeBotones[3][2].setIcon(new ImageIcon((iconoEnemigo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT))));
 
        //escenario11(dy, dx);
       /* for (int i = 0; i < dy; i++) {
@@ -456,6 +472,8 @@ public class Juego extends JFrame {
                    @Override
                    public void actionPerformed(ActionEvent e) {
 
+                       ventana1.setVisible(false);
+                       ventana1.dispose();
 
                        booleana1 = true;
 
@@ -485,6 +503,10 @@ public class Juego extends JFrame {
                new ActionListener() {
                    @Override
                    public void actionPerformed(ActionEvent e) {
+
+                       ventana1.setVisible(false);
+                       ventana1.dispose();
+
 
                        Random aleatorio = new Random(System.currentTimeMillis());
                        dadoA = aleatorio.nextInt(100);
@@ -707,13 +729,32 @@ public class Juego extends JFrame {
 
     }
 
-    public void mostrarVehiculo(){
+    public void mostrarVehiculo(int i, int j){
 
-       /* JFrame ventana = new JFrame();
-        ventana.getContentPane().setLayout(new BorderLayout());
-        ventana.setSize(160, 180);
+        panelS.setLayout(new BoxLayout(panelS,BoxLayout.Y_AXIS));
+        ventana1.setSize(250, 150);
 
-        infoV.setText(getNickname());*/
+        nomV.setText(" Nombre: "+ arregloDeBotones[i][j].v1.getNickname());
+        salV.setText(" Vida: "+arregloDeBotones[i][j].v1.getHp());
+        nivV.setText(" Nivel: "+ arregloDeBotones[i][j].v1.getNivel());
+        ppV.setText(" Puntos de poder: "+ arregloDeBotones[i][j].v1.getPp());
+        xpV.setText(" Experiencia: "+ arregloDeBotones[i][j].v1.getExperiencia());
+        armaV.setText(" Arma: "+ arregloDeBotones[i][j].v1.getArma());
+        ataqueV.setText(" Ataque: " +arregloDeBotones[i][j].v1.getAtaque());
+        defV.setText(" Defensa: " + arregloDeBotones[i][j].v1.getDefensa());
+        puntV.setText(" Punteria" + arregloDeBotones[i][j].v1.getPuntería());
+        panelS.add(nomV);
+        panelS.add(salV);
+        panelS.add(nivV);
+        panelS.add(ppV);
+        panelS.add(xpV);
+        panelS.add(armaV);
+        panelS.add(ataqueV);
+        panelS.add(defV);
+        panelS.add(puntV);
+
+        ventana1.add(panelS);
+        ventana1.setVisible(true);
 
     }
 
@@ -745,81 +786,254 @@ public class Juego extends JFrame {
 
                                         if (seleccion == k && (arregloDeBotones[i][j].v1 instanceof Tanque || arregloDeBotones[i][j].v1 instanceof Avion)) {
 
-                                            //JOptionPane.showMessageDialog(null, ("Ha seleccionado para realizar el ataque:"));
+                                            mostrarVehiculo(i, j);
 
-                                            JFrame ventana1 = new JFrame("HA SELECCIONADO PARA REALIZAR EL ATAQUE:");
-                                            panelS.setLayout(new BoxLayout(panelS,BoxLayout.Y_AXIS));
-                                            ventana1.setSize(450, 150);
-
-                                            nomV.setText(" Nombre: "+ arregloDeBotones[i][j].v1.getNickname());
-                                            salV.setText(" Vida: "+arregloDeBotones[i][j].v1.getHp());
-                                            nivV.setText(" Nivel: "+ arregloDeBotones[i][j].v1.getNivel());
-                                            ppV.setText(" Puntos de poder: "+ arregloDeBotones[i][j].v1.getPp());
-                                            xpV.setText(" Experiencia: "+ arregloDeBotones[i][j].v1.getExperiencia());
-                                            armaV.setText(" Arma: "+ arregloDeBotones[i][j].v1.getArma());
-                                            ataqueV.setText(" Ataque: " +arregloDeBotones[i][j].v1.getAtaque());
-                                            defV.setText(" Defensa: " + arregloDeBotones[i][j].v1.getDefensa());
-                                            puntV.setText(" Punteria" + arregloDeBotones[i][j].v1.getPuntería());
-                                            panelS.add(nomV);
-                                            panelS.add(salV);
-                                            panelS.add(nivV);
-                                            panelS.add(ppV);
-                                            panelS.add(xpV);
-                                            panelS.add(armaV);
-                                            panelS.add(ataqueV);
-                                            panelS.add(defV);
-                                            panelS.add(puntV);
-
-                                            ventana1.add(panelS);
-                                            ventana1.setVisible(true);
-
+                                            //ATACAR DERECHA
                                             if (direccion == 1) {
 
-                                                for(int o=j+1; o< dx; o++){
+                                                for (int o = j+1; o< dx; o++) {
 
-                                                    contadorCasillas= contadorCasillas +1;
-                                                }
+                                                    if (arregloDeBotones[i][o].v1 instanceof Enemigo) {
 
-                                                System.out.println("Casillas disponibles " + contadorCasillas);
-                                                System.out.println("DADO: " + dadoM);
-                                                if(contadorCasillas>= dadoM) {
-                                                    if(!(arregloDeBotones[(i)][(j + dadoM)].v1 instanceof Tanque || arregloDeBotones[(i)][(j + dadoM)].v1 instanceof Avion)) {
-                                                        moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + dadoM)]);
-                                                        //arregloDeBotones[i][j].getCuadroColor();
-                                                        arregloDeBotones[i][j].setIcon(null);
+                                                        System.out.println("Hay un enemigo");
+
+                                                        int defensaEnemigo = 6;
+                                                        int xpCont=0;
+                                                        double daño;
+                                                        //Obtiene la vida del enemigo, el ataque del vehiculo aliado
+                                                        double vida = arregloDeBotones[i][o].v1.getHp();
+                                                        int ataque = arregloDeBotones[i][j].v1.getAtaque();
+
+                                                        daño = ((ataque*dadoA)/100);
+                                                        double vidaActual = vida - daño;
+
+
+                                                        /*
+                                                        ////////////////////////////////////////////////PRUEBA////////////////////////////////////
+                                                        System.out.println("DADO ATAQUE2: "+dadoA);
+                                                        System.out.println("ATAQUE V: "+ ataque);
+                                                        System.out.println("\nDAÑO: "+ daño);
+                                                        System.out.println("\n\n"+dadoA/100);
+                                                        System.out.println("\nVIDA ACTUAL AAA: "+ vidaActual);
+                                                         */
+
+                                                        xpCont+=5;
+                                                        int experiencia = arregloDeBotones[i][j].v1.getExperiencia();
+                                                        int xpActual = experiencia + xpCont;
+                                                        System.out.println("\n················· ATAQUE EXITOSO ·················");
+
+                                                        //cambia y luego muestra la vida del enemigo
+                                                        ((Enemigo)arregloDeBotones[i][o].v1).setHp(vidaActual,arregloDeBotones[i][o].v1.getNivel());
+                                                        System.out.println("\nDatos del enemigo: ");
+                                                        System.out.println("Vida: " + arregloDeBotones[i][o].v1.getHp());
+                                                        arregloDeBotones[i][j].v1.setExperiencia(arregloDeBotones[i][j].v1.getExperiencia()+5);
+
+
+                                                        //Si el enemigo se queda sin vida
+                                                        if (vidaActual <= 0) {
+                                                            ///
+                                                            if (arregloDeBotones[i][j].v1.getExperiencia() >= 10)
+                                                                arregloDeBotones[i][j].v1.setNivel(+1);
+
+                                                            arregloDeBotones[i][o].setIcon(null);
+                                                            arregloDeBotones[i][o].inicializarTanque();
+                                                            arregloDeBotones[i][o].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+                                                        }
                                                     }
-
                                                 }
+                                                direccion=0;
 
-                                                if(contadorCasillas <= dadoM && contadorCasillas!=0) {
-                                                    if(!(arregloDeBotones[(i)][(j + contadorCasillas)].v1 instanceof Tanque || arregloDeBotones[(i)][(j + contadorCasillas)].v1 instanceof Avion)) {
-                                                        moverVehículo(arregloDeBotones[i][j], arregloDeBotones[(i)][(j + contadorCasillas)]);
-                                                        //arregloDeBotones[i][j].getCuadroColor();
-                                                        arregloDeBotones[i][j].setIcon(null);
+                                            }
+
+
+                                            //ATACAR IZQUIERDA
+                                            if (direccion == 2) {
+
+                                                for (int o = j-1; o >= 0; o--) {
+
+                                                    if (arregloDeBotones[i][o].v1 instanceof Enemigo) {
+
+                                                        System.out.println("Hay un enemigo");
+
+                                                        int defensaEnemigo = 6;
+                                                        int xpCont=0;
+                                                        double daño;
+                                                        //Obtiene la vida del enemigo, el ataque del vehiculo aliado
+                                                        double vida = arregloDeBotones[i][o].v1.getHp();
+                                                        int ataque = arregloDeBotones[i][j].v1.getAtaque();
+
+                                                        daño = ((ataque*dadoA)/100);
+                                                        double vidaActual = vida - daño;
+
+
+                                                        /*
+                                                        ////////////////////////////////////////////////PRUEBA////////////////////////////////////
+                                                        System.out.println("DADO ATAQUE2: "+dadoA);
+                                                        System.out.println("ATAQUE V: "+ ataque);
+                                                        System.out.println("\nDAÑO: "+ daño);
+                                                        System.out.println("\n\n"+dadoA/100);
+                                                        System.out.println("\nVIDA ACTUAL AAA: "+ vidaActual);
+                                                         */
+
+                                                        xpCont+=5;
+                                                        int experiencia = arregloDeBotones[i][j].v1.getExperiencia();
+                                                        int xpActual = experiencia + xpCont;
+                                                        System.out.println("\n················· ATAQUE EXITOSO ·················");
+
+                                                        //cambia y luego muestra la vida del enemigo
+                                                        ((Enemigo)arregloDeBotones[i][o].v1).setHp(vidaActual,arregloDeBotones[i][o].v1.getNivel());
+                                                        System.out.println("\nDatos del enemigo: ");
+                                                        System.out.println("Vida: " + arregloDeBotones[i][o].v1.getHp());
+                                                        arregloDeBotones[i][j].v1.setExperiencia(arregloDeBotones[i][j].v1.getExperiencia()+5);
+
+
+                                                        //Si el enemigo se queda sin vida
+                                                        if (vidaActual <= 0) {
+                                                            ///
+                                                            if (arregloDeBotones[i][j].v1.getExperiencia() >= 10)
+                                                                arregloDeBotones[i][j].v1.setNivel(+1);
+
+                                                            arregloDeBotones[i][o].setIcon(null);
+                                                            arregloDeBotones[i][o].inicializarTanque();
+                                                            arregloDeBotones[i][o].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+                                                        }
                                                     }
-
-                                                    ////////////////////////////////////////    MENSAJE NO PUEDE MOVER VEHICULO SOBRE OTRO
-                                                       /* else {
-                                                            JOptionPane.showMessageDialog(null, "No puede poner un vehiculo sobre otro");
-                                                        }*/
                                                 }
+                                                direccion=0;
+                                            }
 
-                                                if(contadorCasillas==0) {
-                                                    JOptionPane.showMessageDialog(null, "Limite de escenario");
+
+                                            //ATACAR ARRIBA
+                                            if (direccion == 3) {
+
+                                                for (int o = i-1; o>=0; o--) {
+
+                                                    if (arregloDeBotones[o][j].v1 instanceof Enemigo) {
+
+                                                        System.out.println("Hay un enemigo");
+
+                                                        int defensaEnemigo = 6;
+                                                        int xpCont=0;
+                                                        double daño;
+                                                        //Obtiene la vida del enemigo, el ataque del vehiculo aliado
+                                                        double vida = arregloDeBotones[o][j].v1.getHp();
+                                                        int ataque = arregloDeBotones[i][j].v1.getAtaque();
+
+                                                        daño = ((ataque*dadoA)/100);
+                                                        double vidaActual = vida - daño;
+
+
+                                                        /*
+                                                        ////////////////////////////////////////////////PRUEBA////////////////////////////////////
+                                                        System.out.println("DADO ATAQUE2: "+dadoA);
+                                                        System.out.println("ATAQUE V: "+ ataque);
+                                                        System.out.println("\nDAÑO: "+ daño);
+                                                        System.out.println("\n\n"+dadoA/100);
+                                                        System.out.println("\nVIDA ACTUAL AAA: "+ vidaActual);
+                                                         */
+
+                                                        xpCont+=5;
+                                                        int experiencia = arregloDeBotones[i][j].v1.getExperiencia();
+                                                        int xpActual = experiencia + xpCont;
+                                                        System.out.println("\n················· ATAQUE EXITOSO ·················");
+
+                                                        //cambia y luego muestra la vida del enemigo
+                                                        ((Enemigo)arregloDeBotones[o][j].v1).setHp(vidaActual,arregloDeBotones[o][j].v1.getNivel());
+                                                        System.out.println("\nDatos del enemigo: ");
+                                                        System.out.println("Vida: " + arregloDeBotones[o][j].v1.getHp());
+                                                        arregloDeBotones[i][j].v1.setExperiencia(arregloDeBotones[i][j].v1.getExperiencia()+5);
+
+
+                                                        //Si el enemigo se queda sin vida
+                                                        if (vidaActual <= 0) {
+                                                            ///
+                                                            if (arregloDeBotones[i][j].v1.getExperiencia() >= 10)
+                                                                arregloDeBotones[i][j].v1.setNivel(+1);
+
+                                                            arregloDeBotones[o][j].setIcon(null);
+                                                            arregloDeBotones[o][j].inicializarTanque();
+                                                            arregloDeBotones[o][j].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+                                                        }
+                                                    }
                                                 }
+                                                direccion=0;
                                             }
 
 
                                             //ATACAR ABAJO
                                             if (direccion == 4) {
 
-                                                //for (int o = a+1; o < dy; o++) {
                                                 for (int o = i+1; o< dy; o++) {
 
                                                     if (arregloDeBotones[o][j].v1 instanceof Enemigo) {
+
                                                         System.out.println("Hay un enemigo");
+
+                                                        int defensaEnemigo = 6;
+                                                        int xpCont=0;
+                                                        double daño;
+                                                        //Obtiene la vida del enemigo, el ataque del vehiculo aliado
+                                                        double vida = arregloDeBotones[o][j].v1.getHp();
+                                                        int ataque = arregloDeBotones[i][j].v1.getAtaque();
+
+                                                        daño = ((ataque*dadoA)/100);
+                                                        double vidaActual = vida - daño;
+
+
+                                                        /*
+                                                        ////////////////////////////////////////////////PRUEBA////////////////////////////////////
+                                                        System.out.println("DADO ATAQUE2: "+dadoA);
+                                                        System.out.println("ATAQUE V: "+ ataque);
+                                                        System.out.println("\nDAÑO: "+ daño);
+                                                        System.out.println("\n\n"+dadoA/100);
+                                                        System.out.println("\nVIDA ACTUAL AAA: "+ vidaActual);
+                                                         */
+
+                                                            xpCont+=5;
+                                                            int experiencia = arregloDeBotones[i][j].v1.getExperiencia();
+                                                            int xpActual = experiencia + xpCont;
+                                                            System.out.println("\n················· ATAQUE EXITOSO ·················");
+
+                                                            //cambia y luego muestra la vida del enemigo
+                                                            ((Enemigo)arregloDeBotones[o][j].v1).setHp(vidaActual,arregloDeBotones[o][j].v1.getNivel());
+                                                            System.out.println("\nDatos del enemigo: ");
+                                                            System.out.println("Vida: " + arregloDeBotones[o][j].v1.getHp());
+                                                            arregloDeBotones[i][j].v1.setExperiencia(arregloDeBotones[i][j].v1.getExperiencia()+5);
+
+
+                                                            //Si el enemigo se queda sin vida
+                                                            if (vidaActual <= 0) {
+                                                                ///
+                                                                if (arregloDeBotones[i][j].v1.getExperiencia() >= 10)
+                                                                    arregloDeBotones[i][j].v1.setNivel(+1);
+
+                                                                arregloDeBotones[o][j].setIcon(null);
+                                                                arregloDeBotones[o][j].inicializarTanque();
+                                                                arregloDeBotones[o][j].setIcon(new ImageIcon(iconoTanque1.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+
+
+                                                                //Las siguientes 3 condiciones, analizan el tipo de terreno en el que estaba el enemigo, para devolverlo
+                                                               /* if (arregloDeBotones[o][j] instanceof TerrenoTierra) {
+
+                                                                    System.out.println("\nHa eliminado a un enemigo");
+                                                                    arregloDeBotones[o][j] = new TerrenoTierra();
+                                                                }
+
+                                                                if (arregloDeBotones[o][j] instanceof TerrenoAgua) {
+
+                                                                    System.out.println("\nHa eliminado a un enemigo");
+                                                                    arregloDeBotones[o][j] = new TerrenoAgua();
+                                                                }
+
+                                                                if (arregloDeBotones[o][j] instanceof TerrenoMontaña) {
+
+                                                                    System.out.println("\nHa eliminado a un enemigo");
+                                                                    arregloDeBotones[o][j] = new TerrenoMontaña();
+                                                                }*/
+                                                            }
                                                     }
                                                 }
+                                                direccion=0;
                                             }
 
 
@@ -878,4 +1092,7 @@ public class Juego extends JFrame {
     }
 
 
+    public Terreno[][] getArregloDeBotones() {
+        return arregloDeBotones;
+    }
 }

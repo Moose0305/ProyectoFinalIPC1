@@ -26,7 +26,7 @@ public class Enemigo extends Vehículo{
     }
 
     //GETTERS - ACCEDER
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 
@@ -54,11 +54,11 @@ public class Enemigo extends Vehículo{
 
 
     //SETTERS- EN FUNCION DEL NIVEL
-    public void setHp(int hp, int nivel) {
+    public void setHp(double hp, int nivel) {
         this.hp = hp + ((nivel-1)*50);
     }
 
-    public void setHp(int hp) {
+    public void setHp(double hp) {
         this.hp = hp + ((nivel-1)*50);
     }
 

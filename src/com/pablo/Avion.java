@@ -60,7 +60,7 @@ public class Avion extends Vehículo {
         return defensa;
     }
 
-    public int  getHp () { return  hp;}
+    public double  getHp () { return  hp;}
 
     public int  getNivel () { return  nivel;}
 
@@ -82,11 +82,11 @@ public class Avion extends Vehículo {
 
 
     //SETTERS - MODIFICAR- EN FUNCION DEL NIVEL
-    public void setHp(int hp, int nivel) {
+    public void setHp(double hp, int nivel) {
         this.hp = hp + ((nivel-1)*50);
     }
 
-    public void setHp(int hp) {
+    public void setHp(double hp) {
         this.hp = hp;
     }
 

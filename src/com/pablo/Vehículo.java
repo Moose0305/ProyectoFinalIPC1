@@ -9,7 +9,8 @@ import java.util.Scanner;
 abstract public class Vehículo {
 
     //ATRIBUTOS DE LA SUPER CLASE
-    protected int hp, pp, nivel, contadordisparo;
+    protected int pp, nivel, contadordisparo;
+    protected double hp;
     protected int experiencia;
     protected String nickname, arma, armabásica;
     protected static final char Tanque = 'T';
@@ -57,7 +58,7 @@ abstract public class Vehículo {
     }
 
     //GETTERS, PARA ACCEDER
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 
@@ -90,8 +91,8 @@ abstract public class Vehículo {
     abstract int getPuntería();
 
     //SETTERS, PARA CAMBIAR VALORES
-    abstract public void setHp(int hp, int nivel);
-    abstract public void setHp(int hp);
+    abstract public void setHp(double hp, int nivel);
+    abstract public void setHp(double hp);
     abstract public void setPp(int pp);
     abstract public void setNivel(int nivel);
     abstract public void setExperiencia(int experiencia);

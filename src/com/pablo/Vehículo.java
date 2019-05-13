@@ -13,12 +13,6 @@ abstract public class Vehículo {
     protected double hp;
     protected int experiencia;
     protected String nickname, arma, armabásica;
-    protected static final char Tanque = 'T';
-    protected static final char Avión = 'A';
-    protected final char Enemigo = (char)36;
-
-    protected static final String Blanco = "\033[30m";
-    protected static final String Rojo = "\033[31m";
 
     /**
      * Constructor que inicializa atributos de vehiculo
@@ -106,7 +100,7 @@ abstract public class Vehículo {
      * obtiene el nombre del v
      * @return nombre
      */
-    abstract String getVehículo();
+    //abstract String getVehículo();
 
     /**
      * obtiene datos del v

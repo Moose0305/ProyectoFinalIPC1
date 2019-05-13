@@ -11,12 +11,6 @@ public class Tanque extends Vehículo {
     private int ataque, defensa, movespecial, puntería,s2=1;
     public int llantas=6;
 
-    //SOBRE ESCRITURA DE METODOS ABSTRACTOS QUE DEVUELVEN EL COLOR Y SIMBOLO DEL OBJETO
-    @Override
-    String getVehículo() {
-        return Blanco + Tanque;
-    }
-
     //SOBRE CARGA DE CONSTRUCTORES SIN PARAMETRO Y PARAMETRO NOMBRE
     /**
      * Constructor que inicializa atributos de tanque

@@ -11,10 +11,6 @@ public class Enemigo extends Vehículo{
     private int ataque, defensa, puntería, s2=1;
 
     //SOBRE ESCRITURA DE METODOS ABSTRACTOS QUE DEVUELVEN EL COLOR Y SIMBOLO DEL OBJETO
-    @Override
-    String getVehículo() {
-        return Rojo + Enemigo;
-    }
 
     /**
      * Constructor que inicializa atributos de enemigo

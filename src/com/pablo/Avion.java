@@ -12,12 +12,6 @@ public class Avion extends Vehículo {
     private int ataque, defensa, movespecial, puntería, s2=1;
     public int alerones=2;
 
-    //SOBRE ESCRITURA DE METODOS ABSTRACTOS QUE DEVUELVEN EL COLOR Y SIMBOLO DEL OBJETO
-    @Override
-    String getVehículo() {
-        return Blanco + Avión;
-    }
-
     //SOBRE CARGA DE CONSTRUCTORES SIN PARAMETRO Y CON PARAMETRO NOMBRE
 
     /** Inicializa los atributos de un avion

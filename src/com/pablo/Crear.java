@@ -27,7 +27,7 @@ public class Crear extends JFrame {
     /**
      * Ventana que permite crear objetos
      */
-    public void Crear() {
+        public void Crear() {
 
         //Estableciendo propiedades de la ventana; titulo, tamaño y los paneles que contendrà
         JFrame ventana = new JFrame("");

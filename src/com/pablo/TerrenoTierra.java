@@ -7,11 +7,6 @@ public class TerrenoTierra extends Terreno {
 
     int tipo = 1;
 
-    /*@Override
-    String getCuadroColor() {
-        return null;
-    }*/
-
     /**
      * constructor que establece el color del terreno
      */

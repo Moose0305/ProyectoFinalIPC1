@@ -12,14 +12,6 @@ public abstract class Terreno extends JButton {
     public static int numtanque;
     public static int numavion;
 
-    protected static final char CuadroA = '~';
-    protected final char CuadroT = (char)178;
-    protected final char CuadroM = (char)254;
-
-    protected static final String Agua = "\033[36m";
-    protected static final String Tierra = "\033[33m";
-    protected static final String Montaña = "\033[32m";
-
     ImageIcon iconoAgua= new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/agua.png");
     ImageIcon iconoTierra= new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/tierra.jpg");
     ImageIcon iconoMontaña= new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/montaña.png");
@@ -81,7 +73,7 @@ public abstract class Terreno extends JButton {
     public void inicializarTanque(String nombre){
         v1 = new Tanque();
         v1.setNickname(nombre);
-        v1.getVehículo();
+        //v1.getVehículo();
     }
 
     /**
@@ -91,7 +83,7 @@ public abstract class Terreno extends JButton {
     public void inicializarAvion(String nombre){
         v1 = new Tanque();
         v1.setNickname(nombre);
-        v1.getVehículo();
+        //v1.getVehículo();
     }
 
     /**
@@ -99,7 +91,7 @@ public abstract class Terreno extends JButton {
      */
     public void inicializarTanque(){
         v1 = new Tanque();
-        v1.getVehículo();
+        //v1.getVehículo();
         numtanque++;
         System.out.println("\nNickname de tanque "+ numtanque + ": " + v1.datosvehículo());
         v1.getDatosVehìculo();
@@ -110,7 +102,7 @@ public abstract class Terreno extends JButton {
      */
     public void inicializarAvion(){
         v1 = new Avion();
-        v1.getVehículo();
+        //v1.getVehículo();
         numavion++;
         System.out.println("\nNickname de avion "+ numavion + ": " + v1.datosvehículo());
         v1.getDatosVehìculo();
@@ -121,6 +113,6 @@ public abstract class Terreno extends JButton {
      */
     public void inicializarEnemigo(){
         v1 = new Enemigo();
-        v1.getVehículo();
+        //v1.getVehículo();
     }
 }

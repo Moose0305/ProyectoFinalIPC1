@@ -9,11 +9,6 @@ public class TerrenoMontaña extends Terreno {
 
     int vida = 5;
 
-    /*@Override
-    String getCuadroColor() {
-        return null;
-    }*/
-
     /**
      * constructor que establece el color del terreno
      */

@@ -7,7 +7,7 @@ public class Main {
 
         Juego j = new Juego();
         j.inicioJuego();
-        //j.inicioTablero();
+
 
 
     }

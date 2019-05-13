@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
+/**
+ * Declaracion de ventana jugador que hereda de JFrame
+ */
 public class Jugador extends JFrame {
 
     JFrame frame = new JFrame();
@@ -30,6 +33,9 @@ public class Jugador extends JFrame {
     private JButton tanque;
     private JButton avion;
 
+    /**
+     * crea un nuevo jugador o 2 jugadores dependiendo del tipo de juego a desarrollar
+     */
     public void crearJugador() {
 
         if (contador <= 2) {
@@ -140,121 +146,5 @@ public class Jugador extends JFrame {
 
             //SeleccionVehículos();
         }
-    }
-
-/*    public void SeleccionVehículos() {
-
-        String nombre;
-        int numvehículo = 1, selec;
-
-        System.out.println("Seleccione 3 vehículos\n[0] Tanque \n[1] Avion");
-
-        //for que recorrerá la matriz [3] de seleccion de vehículos
-        for (int i = 0; i < 3; i++) {
-            System.out.println("\nSeleccione vehículo No. " + numvehículo);
-            Scanner p = new Scanner(System.in);
-            selec = p.nextInt();
-            selección[i] = selec;
-
-            //comparacion para inicializar un tanque
-            if (selección[i] == 0) {
-                System.out.println("Ha seleccionado Tanque\n");
-                numvehículo++;
-                //escenario[11][cont].inicializarTanque();
-                cont = cont + 5;
-
-            }
-
-            //comparacion para inicializar un avion
-            if (selección[i] == 1) {
-                System.out.println("Ha seleccionado Avion\n");
-                numvehículo++;
-                //escenario[11][cont].inicializarAvion();
-                cont = cont + 5;
-            }
-            if (selección[i] != 0 && selección[i] != 1) {
-                System.out.println("Caracter incorrecto, intente de nuevo");
-                i--;
-            }
-        }
-    }*/
-
-
-
-    public void seleccionarVehiculos() {
-
-        JPanel panelSuperior;
-        JPanel panelCentro;
-
-        //inicializando los paneles a utilizar
-        panelSuperior = new JPanel();
-        panelCentro = new JPanel();
-
-        //añaden propiedades a la ventana
-        JFrame seleccionPieza = new JFrame("SELECCION DE VEHICULOS");
-        seleccionPieza.setSize(400, 200);
-
-        //establece las filas y columnas para los botones
-        panelCentro.setLayout(new GridLayout(1, 2));
-
-        //obtienen las direcciones de los iconos torre y alfil
-        ImageIcon iconoTanque = new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/tanque2.png");
-        ImageIcon iconoAvion = new ImageIcon("out/production/Tanques y Aviones V2/com/Imagen/avion2.png");
-
-        //establecen las dimensiones de los iconos
-        int ancho = 70;
-        int alto = -1;
-
-        //inicializan los botones a utilizar
-        tanque = new JButton();
-        avion = new JButton();
-
-        //inicializando campos de informacion
-        seleccionNo = new JLabel("Seleccione vehiculo No. 1");
-
-        //se añaden los iconos a los botones torre y alfil
-        tanque.setIcon(new ImageIcon(iconoTanque.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
-        avion.setIcon(new ImageIcon(iconoAvion.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
-
-        panelSuperior.add(seleccionNo);
-        panelCentro.add(tanque);
-        panelCentro.add(avion);
-
-        seleccionPieza.getContentPane().add(BorderLayout.CENTER, panelCentro);
-        seleccionPieza.getContentPane().add(BorderLayout.NORTH, panelSuperior);
-
-        //permite visualizar la ventana
-        seleccionPieza.setVisible(true);
-
-        //evento de boton torre
-        tanque.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                        //establece parámetro de seleccion de torre y muestra la ventana para seleccionar el boton
-                        //donde se creará la nueva pieza
-                        selec=1;
-                        System.out.println("Ha seleccionado torre");
-                        frame.setVisible(true);
-                    }
-                }
-        );
-
-        //evento de boton alfil
-        avion.addActionListener(
-
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                        //establece parámetro de seleccion de alfil y muestra la ventana para seleccionar el boton
-                        //donde se creará la nueva pieza
-                        selec=2;
-                        System.out.println("Ha seleccionado alfil");
-                        frame.setVisible(true);
-                    }
-                }
-        );
     }
 }

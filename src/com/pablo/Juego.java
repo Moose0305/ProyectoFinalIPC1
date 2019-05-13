@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-
+/** declaracion de la clase ventana que hereda de JFrame
+ *
+ */
 public class Juego extends JFrame {
 
     Terreno [][] arregloDeBotones;
@@ -78,6 +80,9 @@ public class Juego extends JFrame {
     JLabel defV = new JLabel();
     JLabel puntV = new JLabel();
 
+    /**
+     *  escenario 1
+     */
     public void escenario11(int i, int e, int dy, int dx){
 
         if((i==1 && e==0) || (i==2 && e==0)) {
@@ -94,6 +99,10 @@ public class Juego extends JFrame {
         }
     }
 
+
+    /**
+     *  escenario 2
+     */
     public void escenario12(int i, int e, int dy, int dx){
 
         if((i==1 && e==3) || (i==2 && e==0)) {
@@ -110,6 +119,9 @@ public class Juego extends JFrame {
         }
     }
 
+    /**
+     *  inicia el juego
+     */
     public void inicioJuego() {
 
     //Estableciendo propiedades de la ventana; titulo, tamaño y los paneles que contendrà
@@ -192,6 +204,11 @@ public class Juego extends JFrame {
     ventana.setVisible(true);
   }
 
+
+    /**Inicia y muestra el tablero de juego; terrenos y vehiculos
+     * @param dy dimension "y" de tablero a jugaro
+     * @param dx dimension "x" de tablero a jugaro
+     */
    public void iniciarTablero(int dy, int dx) {
 
         JPanel panelSuperior = new JPanel();
@@ -594,6 +611,11 @@ public class Juego extends JFrame {
     }
 
 
+    /**
+     * metodo que permite al jugador mover sus vehiculos dependiendo de las condiciones terreno-vehiculo
+     * @param dy
+     * @param dx
+     */
     public void mover(int dy, int dx) {
 
         for(int i=0; i<dy; i++) {
@@ -1038,11 +1060,19 @@ public class Juego extends JFrame {
 
     }
 
+    /**
+     * Permite mover el objeto vehiculo a una nueva posicion
+     * @param co posicion antigua
+     * @param cd posicion nueva
+     */
     public void moverVehículo(Terreno co, Terreno cd){
         cd.setV1(co.getV1());
         co.setV1(null);
     }
 
+    /**
+     * Muestra ventana que permite establecer una direccion para mover o atacar
+     */
     public void flechas() {
 
 
@@ -1126,6 +1156,11 @@ public class Juego extends JFrame {
 
     }
 
+    /**
+     * Muestra ventana con los datos del vehiculo seleccionado por el jugador
+     * @param i posicion "y" del vehiculo
+     * @param j posicion "x" del vehiculo
+     */
     public void mostrarVehiculo(int i, int j){
 
         panelS.setLayout(new BoxLayout(panelS,BoxLayout.Y_AXIS));
@@ -1155,6 +1190,11 @@ public class Juego extends JFrame {
 
     }
 
+    /**
+     * Inicializa los vehiculos seleccionados por el jugador al inicio del juego
+     * @param dy dimension "y" del tablero a jugar
+     * @param dx dimension "x" del tablero a jugar
+     */
     public void iniciarVehiculos(int dy, int dx){
         int contadorpos=0;
         for (int u = 0; u < SeleccionVehiculos.getSelec().length; u++) {
@@ -1187,6 +1227,12 @@ public class Juego extends JFrame {
 
     }
 
+
+    /**
+     * Permite al jugador realizar ataques hacia los enemigos
+     * @param dy dimension "y" del tablero a jugar
+     * @param dx dimension "x" del tablero a jugar
+     */
     public void atacar(int dy, int dx) {
 
         JOptionPane.showMessageDialog(null, ("Seleccione la direccion del ataque y luego el vehiculo que realizara el ataque"));
@@ -1518,10 +1564,5 @@ public class Juego extends JFrame {
                 );
             }
         }
-    }
-
-
-    public Terreno[][] getArregloDeBotones() {
-        return arregloDeBotones;
     }
 }

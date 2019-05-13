@@ -2,6 +2,9 @@ package com.pablo;
 
 import javax.swing.*;
 
+/**
+ * Declaracion de clase terreno que hereda de JButton
+ */
 public abstract class Terreno extends JButton {
 
     //SUPER CLASE ABSTRACTA
@@ -35,16 +38,11 @@ public abstract class Terreno extends JButton {
 
     protected Vehículo v1;
 
+    /**
+     * Constructor que inicializa objeto
+     */
     Terreno(){
        JButton Terreno = new JButton("J");
-        //this.setText("J");
-        //this.setIcon(new ImageIcon(iconoMontaña.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
-
-
-        //this.setBackground(new java.awt.Color(39, 198, 203));
-        //this.setIcon(new ImageIcon(iconoMontaña.getImage()));
-
-        //this.setIcon();
         v1 = null;
     }
 
@@ -54,6 +52,10 @@ public abstract class Terreno extends JButton {
         return false;
     }
 
+    /**
+     * Modifica icono de tanque o avion
+     * @param v1 objeto de vehiculo
+     */
     public void setV1(Vehículo v1) {
        this.v1 = v1;
 
@@ -64,22 +66,37 @@ public abstract class Terreno extends JButton {
            this.setIcon(new ImageIcon(iconoAvion2.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
     }
 
+    /**
+     * obtiene objeto de vehiculo
+     * @return vehiculo
+     */
     public Vehículo getV1() {
         return v1;
     }
 
+    /**
+     * inicializa tanque con parametro nombre
+     * @param nombre nombre
+     */
     public void inicializarTanque(String nombre){
         v1 = new Tanque();
         v1.setNickname(nombre);
         v1.getVehículo();
     }
 
+    /**
+     * inicializa avion con parametro nombre
+     * @param nombre nombre
+     */
     public void inicializarAvion(String nombre){
         v1 = new Tanque();
         v1.setNickname(nombre);
         v1.getVehículo();
     }
 
+    /**
+     * Inicializa tanque
+     */
     public void inicializarTanque(){
         v1 = new Tanque();
         v1.getVehículo();
@@ -88,7 +105,9 @@ public abstract class Terreno extends JButton {
         v1.getDatosVehìculo();
     }
 
-
+    /**
+     * inicializa avion
+     */
     public void inicializarAvion(){
         v1 = new Avion();
         v1.getVehículo();
@@ -97,17 +116,11 @@ public abstract class Terreno extends JButton {
         v1.getDatosVehìculo();
     }
 
+    /**
+     * inicializa enemigo
+     */
     public void inicializarEnemigo(){
         v1 = new Enemigo();
         v1.getVehículo();
     }
-
-    /*String getLine1(){
-        if (v1!= null)
-            return getCuadroColor()+getCuadroColor()+v1.getVehículo()+getCuadroColor()+getCuadroColor();
-
-        return getCuadroColor()+getCuadroColor()+getCuadroColor()+getCuadroColor()+getCuadroColor();
-    }*/
-
-    //abstract String getCuadroColor();
 }

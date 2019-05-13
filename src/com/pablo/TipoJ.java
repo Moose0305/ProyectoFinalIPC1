@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Declaracion de clase TIPO DE JUEGO que hereda de JFrame
+ */
 public class TipoJ extends JFrame {
 
     public static int tipoJuego;
@@ -19,10 +22,17 @@ public class TipoJ extends JFrame {
     private JButton jugador1;
     private JButton jugador2;
 
+    /**
+     * obtiene el tipo de juego
+     * @return tipo de juego
+     */
     public static int getTipoJuego() {
         return tipoJuego;
     }
 
+    /**
+     * metodo que establece el tipo de juego y llama a metodos que inicializan los jugadores
+     */
     public void tipoDeJuego() {
 
         //Estableciendo propiedades de la ventana; titulo, tamaño y los paneles que contendrà

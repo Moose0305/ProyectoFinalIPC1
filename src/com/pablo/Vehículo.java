@@ -21,7 +21,7 @@ abstract public class Vehículo {
     protected static final String Rojo = "\033[31m";
 
     /**
-     * Constructor
+     * Constructor que inicializa atributos de vehiculo
      */
     //DEFECTO
     public Vehículo() {
@@ -33,22 +33,20 @@ abstract public class Vehículo {
     }
 
     //PARAMETRO NICKNAME
+    /**
+     * @param nickname nombre de vehiculo
+     * Constructor que inicializa atributos de vehiculo
+     */
     public Vehículo(String nickname) {
         this();
         nickname = "default";
         arma = armabásica;
     }
 
-    //METODO PARA SELECCIONAR EL NOMBRE DE UN VEHICULO
-   /* public String datosvehículo () {
-        Scanner s = new Scanner(System.in);
-        System.out.println("\nIngrese el nickname del vehículo ");
-        nickname = s.nextLine();
-        setNickname(nickname);
-
-        return nickname;
-    }*/
-
+    /**
+     * setea el nombre de un vehiculo
+     * @return
+     */
     public String datosvehículo () {
 
         nickname = "v1";
@@ -58,23 +56,43 @@ abstract public class Vehículo {
     }
 
     //GETTERS, PARA ACCEDER
+
+    /**
+     * obtiene vida de v
+     * @return vida
+     */
     public double getHp() {
         return hp;
     }
 
+    /**
+     * obtiene nivel de v
+     * @return nivel
+     */
     public int getNivel() {
         return nivel;
     }
 
+    /**
+     * obtiene Xp de v
+     * @return Xp
+     */
     public int getExperiencia() {
         return experiencia;
     }
 
+    /**
+     * Obtiene pp de v
+     * @return Pp
+     */
     public int getPp() {
         return pp;
     }
 
-
+    /**
+     * obtiene nombre de v
+     * @return nombre
+     */
     public String getNickname() {
         return nickname;
     }
@@ -83,27 +101,63 @@ abstract public class Vehículo {
 
 
     //GETTERS ABSTRACTOS, GENERALES
+
+    /**
+     * obtiene el nombre del v
+     * @return nombre
+     */
     abstract String getVehículo();
+
+    /**
+     * obtiene datos del v
+     * @return datos
+     */
     abstract String getDatosVehìculo();
+
+    /**
+     * obtiene arma de v
+     * @return arma
+     */
     abstract String getArma();
+
+    /**
+     * obtiene ataque de v
+     * @return ataque
+     */
     abstract int getAtaque();
+
+    /**
+     * obtiene defensa de v
+     * @return defensa
+     */
     abstract int getDefensa();
     abstract int getPuntería();
 
     //SETTERS, PARA CAMBIAR VALORES
-    abstract public void setHp(double hp, int nivel);
-    abstract public void setHp(double hp);
-    abstract public void setPp(int pp);
-    abstract public void setNivel(int nivel);
-    abstract public void setExperiencia(int experiencia);
-    abstract public void setAtaque(int ataque, int nivel);
-    abstract public void setAtaque(int ataquel);
-    abstract public void setDefensa(int defensa);
-    abstract public void setDefensa(int defensa, int nivel);
-    abstract public void setPuntería(int puntería);
-    abstract public void setPuntería(int puntería, int nivel);
-    abstract public void setArma(String arma);
 
+    /**
+     * modifica vida de v
+     * @param hp vida
+     * @param nivel nivel
+     */
+    abstract public void setHp(double hp, int nivel);
+
+    /**
+     * modifica nivel de v
+     * @param nivel nivel
+     */
+    abstract public void setNivel(int nivel);
+
+    /**
+     * modifica experiencia de v
+     * @param experiencia experiencia
+     */
+    abstract public void setExperiencia(int experiencia);
+
+    /**
+     * modifica nombre  de v
+     * @param nickname nombre
+     */
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }

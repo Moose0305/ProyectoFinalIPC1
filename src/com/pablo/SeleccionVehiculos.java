@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 
+/**
+ * Declaracion de ventana seleccion de vehiculos
+ */
 public class SeleccionVehiculos {
     private JCheckBox tanqueCheckBox;
     private JCheckBox avionCheckBox;
@@ -31,11 +34,15 @@ public class SeleccionVehiculos {
     private JPanel p2;
 
     static int[] selec = new int[3];
+    static String[] nomb = new String[3];
 
    static boolean sel1;
    static boolean sel2;
    static boolean sel3;
 
+    /**
+     * permite seleccionar los vehiculos a crear por el jugador
+     */
     public void SeleccionVehiculos() {
 
         JFrame ventana = new JFrame();
@@ -57,6 +64,9 @@ public class SeleccionVehiculos {
         );
     }
 
+    /**
+     * muestra los vehiculos seleccionados por el jugador
+     */
     public void mostrarVehiculos() {
 
         p1 = new JPanel();
@@ -78,34 +88,40 @@ public class SeleccionVehiculos {
             System.out.println("Vehiculo 1: Tanque"+"   Nombre: " + textField1.getText());
             sel1=true;
             selec[0] = 0;
+            nomb[0] = textField1.getText();
         }
         if(avionCheckBox.isSelected()){
 
             v1.setText("Vehiculo 1: Avion"+"   Nombre: "+ textField1.getText());
             System.out.println("Vehiculo 1: Avion"+"   Nombre: "+ textField1.getText());
             selec[0] = 1;
+            nomb[0] = textField1.getText();
         }
 
         if(tanqueCheckBox1.isSelected()) {
             v2.setText("Vehiculo 2: Tanque"+ "   Nombre: "+textField2.getText());
             System.out.println("Vehiculo 2: Tanque");
             selec[1] = 0;
+            nomb[1] = textField2.getText();
         }
         if(avionCheckBox1.isSelected()) {
             v2.setText("Vehiculo 2: Avion"+"   Nombre: "+ textField2.getText());
             System.out.println("Vehiculo 2: Avion");
             selec[1] = 1;
+            nomb[1] = textField2.getText();
         }
 
         if(tanqueCheckBox2.isSelected()) {
             v3.setText("Vehiculo 3: Tanque"+ "   Nombre: "+ textField3.getText());
             System.out.println("Vehiculo 3: Tanque"+ "   Nombre: "+ textField3.getText());
             selec[2] = 0;
+            nomb[2] = textField3.getText();
         }
         if(avionCheckBox2.isSelected()) {
             v3.setText("Vehiculo 3: Avion" + "   Nombre: "+ textField3.getText());
             System.out.println("Vehiculo 3: Avion");
             selec[2] = 1;
+            nomb[2] = textField3.getText();
         }
 
 
@@ -142,19 +158,19 @@ public class SeleccionVehiculos {
         vehiculos.setVisible(true);
     }
 
+    /**
+     * obtiene arreglo de selecciones
+     * @return seleccion
+     */
     public static int[] getSelec() {
         return selec;
     }
 
-    public JTextField getTextField1() {
-        return textField1;
-    }
-
-    public JTextField getTextField2() {
-        return textField2;
-    }
-
-    public JTextField getTextField3() {
-        return textField3;
+    /**
+     * obtiene arreglo de nombres de los vehiculos
+     * @return nombres
+     */
+    public static String[] getNomb() {
+        return nomb;
     }
 }

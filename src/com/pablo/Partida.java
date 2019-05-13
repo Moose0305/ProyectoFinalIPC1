@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Declaracion de ventana Partida que hereda de JFrame
+ */
 public class Partida extends JFrame {
 
     private JPanel panelSuperior;
@@ -20,6 +23,9 @@ public class Partida extends JFrame {
     private JButton guardar;
     private JButton cargar;
 
+    /**
+     * Ventana que permite seleccionar entre juego nuevo/ cargar/ guardar juego
+     */
     public void Partida() {
 
         //Estableciendo propiedades de la ventana; titulo, tamaño y los paneles que contendrà

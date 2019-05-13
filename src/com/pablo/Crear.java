@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Declaracion de clase Crear que hereda de JFrame
+ */
 public class Crear extends JFrame {
 
 
@@ -21,6 +24,9 @@ public class Crear extends JFrame {
     private JButton vehiculos;
     private JButton armas;
 
+    /**
+     * Ventana que permite crear objetos
+     */
     public void Crear() {
 
         //Estableciendo propiedades de la ventana; titulo, tamaño y los paneles que contendrà

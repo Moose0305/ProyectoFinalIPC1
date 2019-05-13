@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Declaracion de ventana Flechas que permiten visualizar direcciones de accion
+ */
 public class Flechas {
     private JPanel panel1;
     private JButton button1;
@@ -13,7 +16,9 @@ public class Flechas {
 
     public static int direccion;
 
-
+    /**
+     * Ventana en la que se añaden paneles y botones de movimiento y ataque
+     */
     public void Flechas() {
         JFrame ventana = new JFrame();
         ventana.setSize(160, 180);
@@ -90,11 +95,11 @@ public class Flechas {
 
     }
 
+    /**
+     * obtiene la direccion de accion
+     * @return
+     */
     public static int getDireccion() {
         return direccion;
-    }
-
-    public static void setDireccion(int direccion) {
-        Flechas.direccion = direccion;
     }
 }
